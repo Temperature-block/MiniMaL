@@ -8,10 +8,12 @@ INT_LIT = \-?[0-9]+
 
 TOPLEVEL = EXPR+
 
-BINDING_EXPR = INT_LIT | “(“ BINDING_EXPR “)”
+BINDING_EXPR = INT_LIT | “(“ BINDING_EXPR “)” | AP
 
 EXPR = VAL 
 
 VAL = “val” VAL_BINDING “:=” BINDING_EXPR
+
+AP = builtins [BINDING_EXPR]+  | NAME [BINDING_EXPR]+ 
 
 Note:- ik we have functions we will gradually develop it

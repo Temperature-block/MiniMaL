@@ -1,3 +1,4 @@
+
 (*
 builtins = INT_ADD, INT_SUB, INT_LT, INT_GT, INT_EQ, AND, OR, NOT, BNOT, BLS, BRS, BARS
 
@@ -20,7 +21,13 @@ Note:- ik we have functions we will gradually develop it
 *)
 
 
-type name = Pname of string | Sname of string
+type name = Pname of string  * int ref | Sname of string * int ref
 
 type expr = Val of {name:name; body:bexpr} | Bexpr of bexpr
-and bexpr = Intlit of int | Bind of name
+
+and bexpr = Intlit of int | Bind of name | App of ap
+
+and prim = Int_add  | Int_sub  | Int_lt  | Int_gt  | Int_eq  
+            | And  | Or  | Not  | Bnot  | Bls  | Brs  | Bars
+
+and ap = Pap of {prim:prim; args:bexpr list} | Apply of {fn:name; args:bexpr list}

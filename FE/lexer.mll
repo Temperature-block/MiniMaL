@@ -11,6 +11,18 @@ let symbol  = ['!' '@' '#' '$' '%' '^' '&' '*' '<' '>']+
 rule read = 
   parse
  |white { read lexbuf }
+ | "INT_ADD" { INT_ADD }
+ | "INT_SUB" { INT_SUB }
+ | "INT_LT"  { INT_LT }
+ | "INT_GT"  { INT_GT }
+ | "INT_EQ"  { INT_EQ }
+ | "AND"     { AND }
+ | "OR"      { OR }
+ | "NOT"     { NOT }
+ | "BNOT"    { BNOT }
+ | "BLS"     { BLS }
+ | "BRS"     { BRS }
+ | "BARS"    { BARS }
  |"val" { VAL }
  |":=" { ASSIGN }
  |int_lit { INT_LIT (int_of_string(Lexing.lexeme lexbuf))} 
@@ -19,3 +31,4 @@ rule read =
  |"(" { LP }
  |")" { RP }
  | eof { EOF }
+ |";" { SEND }
